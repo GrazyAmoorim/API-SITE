@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreteCEP | Calcule o frete pelo CEP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <span class="logo">Frete<b>CEP</b></span>
+    <span class="origem-topo">Saída: Uninassau Fortaleza · Parangaba</span>
+  </header>
+
+  <main>
+    <section class="consulta">
+      <h1>Digite o CEP e veja o frete na hora</h1>
+      <p class="lead">Calculamos a distância a partir da Uninassau Parangaba e comparamos com o preço estimado de uma corrida de Uber Moto.</p>
+
+      <form id="form-cep">
+        <input type="text" id="cep" inputmode="numeric" maxlength="9" placeholder="00000-000" autocomplete="postal-code" required>
+        <button type="submit" id="botao">Calcular frete</button>
+      </form>
+
+      <p id="status" class="status" role="status" hidden></p>
+    </section>
+
+    <section id="resultado" class="resultado" hidden>
+      <div class="endereco">
+        <span class="rotulo">Entrega em</span>
+        <strong id="r-endereco"></strong>
+        <span id="r-precisao" class="precisao"></span>
+      </div>
+
+      <div class="cartoes">
+        <article>
+          <span class="rotulo">Distância</span>
+          <strong id="r-distancia"></strong>
+          <small id="r-tempo"></small>
+        </article>
+        <article>
+          <span class="rotulo">Uber Moto (estimado)</span>
+          <strong id="r-uber"></strong>
+          <small>Valor de referência</small>
+        </article>
+        <article>
+          <span class="rotulo">Frete por distância</span>
+          <strong id="r-tabela"></strong>
+          <small id="r-formula-tabela"></small>
+        </article>
+        <article class="destaque">
+          <span class="rotulo">Frete final</span>
+          <strong id="r-frete"></strong>
+          <small id="r-regra"></small>
+        </article>
+      </div>
+    </section>
+
+    <details class="tarifas">
+      <summary>Ajustar tarifas</summary>
+      <div class="tarifas-grade">
+        <label>Uber Moto · bandeirada (R$)<input type="number" id="t-uber-base" value="2.50" min="0" step="0.10"></label>
+        <label>Uber Moto · por km (R$)<input type="number" id="t-uber-km" value="1.20" min="0" step="0.10"></label>
+        <label>Uber Moto · por minuto (R$)<input type="number" id="t-uber-min" value="0.25" min="0" step="0.05"></label>
+        <label>Uber Moto · tarifa mínima (R$)<input type="number" id="t-uber-minimo" value="6.00" min="0" step="0.50"></label>
+        <label>Frete · taxa base (R$)<input type="number" id="t-frete-base" value="5.00" min="0" step="0.50"></label>
+        <label>Frete · por km (R$)<input type="number" id="t-frete-km" value="1.50" min="0" step="0.10"></label>
+      </div>
+    </details>
+
+    <section class="notas">
+      <h2>Como funciona</h2>
+      <ol>
+        <li><b>ViaCEP</b> encontra o endereço do CEP informado.</li>
+        <li><b>Nominatim (OpenStreetMap)</b> transforma o endereço em coordenadas.</li>
+        <li><b>OSRM</b> calcula a distância e o tempo de rota por vias públicas.</li>
+        <li>O preço do Uber Moto é uma <b>estimativa</b> (bandeirada + km + minutos), pois a Uber não oferece API pública de preços.</li>
+        <li>O <b>frete final</b> é o maior valor entre a tabela por distância e a estimativa do Uber Moto.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>FreteCEP · valores estimados, sujeitos a variação de demanda e trânsito</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

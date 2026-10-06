@@ -1,0 +1,203 @@
+:root {
+  --fundo: #f2f7f6;
+  --cartao: #ffffff;
+  --texto: #10242b;
+  --suave: #5d737b;
+  --linha: #d8e4e2;
+  --primaria: #0b7a75;
+  --primaria-escura: #075652;
+  --acento: #ffb703;
+  --erro: #c0392b;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  font-family: "Outfit", system-ui, sans-serif;
+  color: var(--texto);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(11, 122, 117, .12), transparent 40%),
+    var(--fundo);
+}
+
+.topo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  padding: 1rem clamp(1rem, 4vw, 3rem);
+  background: var(--primaria-escura);
+  color: #fff;
+}
+
+.logo { font-size: 1.4rem; font-weight: 600; }
+.logo b { color: var(--acento); font-weight: 800; }
+.origem-topo { font-size: .9rem; opacity: .85; }
+
+main {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 3rem clamp(1rem, 4vw, 2rem) 3rem;
+}
+
+h1 {
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+}
+
+.lead {
+  max-width: 38rem;
+  margin: 1rem 0 1.8rem;
+  color: var(--suave);
+  font-size: 1.1rem;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .8rem;
+}
+
+#cep {
+  flex: 1 1 200px;
+  padding: 1rem 1.2rem;
+  font: 600 1.4rem "Outfit", sans-serif;
+  letter-spacing: .08em;
+  color: var(--texto);
+  background: var(--cartao);
+  border: 2px solid var(--linha);
+  border-radius: 1rem;
+}
+
+#cep:focus {
+  outline: none;
+  border-color: var(--primaria);
+  box-shadow: 0 0 0 4px rgba(11, 122, 117, .15);
+}
+
+#botao {
+  padding: 1rem 2rem;
+  font: 600 1.1rem "Outfit", sans-serif;
+  color: #fff;
+  cursor: pointer;
+  background: var(--primaria);
+  border: none;
+  border-radius: 1rem;
+  transition: background .2s, transform .2s;
+}
+
+#botao:hover { background: var(--primaria-escura); transform: translateY(-2px); }
+#botao:disabled { opacity: .6; cursor: wait; transform: none; }
+
+.status {
+  margin-top: 1rem;
+  font-weight: 600;
+  color: var(--primaria);
+}
+
+.status.erro { color: var(--erro); }
+.status[hidden], .resultado[hidden] { display: none; }
+
+.resultado { margin-top: 2.2rem; }
+
+.endereco {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+  padding: 1.2rem 1.4rem;
+  background: var(--cartao);
+  border: 1px solid var(--linha);
+  border-left: 6px solid var(--primaria);
+  border-radius: 1rem;
+}
+
+.endereco strong { font-size: 1.25rem; }
+.precisao { font-size: .85rem; color: var(--suave); }
+
+.rotulo {
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--suave);
+}
+
+.cartoes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.cartoes article {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  padding: 1.3rem;
+  background: var(--cartao);
+  border: 1px solid var(--linha);
+  border-radius: 1rem;
+}
+
+.cartoes strong { font-size: 1.8rem; font-weight: 800; }
+.cartoes small { color: var(--suave); font-size: .85rem; }
+
+.cartoes .destaque {
+  color: #fff;
+  background: var(--primaria);
+  border-color: var(--primaria);
+}
+
+.cartoes .destaque .rotulo,
+.cartoes .destaque small { color: rgba(255, 255, 255, .85); }
+
+.cartoes .destaque strong { color: var(--acento); }
+
+.tarifas {
+  margin-top: 2rem;
+  padding: 1rem 1.3rem;
+  background: var(--cartao);
+  border: 1px solid var(--linha);
+  border-radius: 1rem;
+}
+
+.tarifas summary { font-weight: 600; cursor: pointer; }
+
+.tarifas-grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.tarifas label {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  font-size: .85rem;
+  color: var(--suave);
+}
+
+.tarifas input {
+  padding: .6rem .8rem;
+  font: inherit;
+  color: var(--texto);
+  border: 1px solid var(--linha);
+  border-radius: .6rem;
+}
+
+.notas { margin-top: 2.5rem; }
+.notas h2 { margin-bottom: .8rem; font-size: 1.3rem; }
+.notas ol { padding-left: 1.3rem; color: var(--suave); line-height: 1.8; }
+.notas b { color: var(--texto); }
+
+footer {
+  padding: 1.5rem 1rem 2rem;
+  text-align: center;
+  font-size: .85rem;
+  color: var(--suave);
+}
